@@ -1,0 +1,2 @@
+Alimento mais caro: Fondue * Sabor Queijo * 19.90 * Alimento * 26/3/2009
+Eletrodomestico mais barato: Torradeira * 220V * 360.10 * Eletrodomestico * 154.65
