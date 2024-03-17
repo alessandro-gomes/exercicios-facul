@@ -1,0 +1,11 @@
+# Arquivos de compilação Java
+*.class
+
+# Diretórios e arquivos do sistema
+.settings/
+.classpath
+.project
+
+# Logs e arquivos temporários
+*.log
+*.tmp
