@@ -6,6 +6,12 @@ public abstract class Produto {
 	private String descricao;
 	private Double preco;
 	
+	public Produto(String nome, String descricao, Double preco) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco = preco;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -24,4 +30,11 @@ public abstract class Produto {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
+
+	@Override
+	public String toString() {
+		return "Produto [nome= " + nome + ", descricao= " + descricao + ", preco= " + preco + "]";
+	}
+	
+	
 }

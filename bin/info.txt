@@ -1,2 +1,14 @@
-Alimento mais caro: Fondue * Sabor Queijo * 19.90 * Alimento * 26/3/2009
-Eletrodomestico mais barato: Torradeira * 220V * 360.10 * Eletrodomestico * 154.65
+Informações do alimento mais caro:
+Fondue | R$ 19.9
+
+Informações do eletrodoméstico mais barato:
+Torradeira | R$ 360.1
+
+Nome e quantidade em estoque de todos os produtos de vestuário:
+Camiseta | Quantidade em estoque: 10
+Calca | Quantidade em estoque: 5
+Bermuda | Quantidade em estoque: 16
+Casaco | Quantidade em estoque: 8
+Moleton | Quantidade em estoque: 36
+Gravata | Quantidade em estoque: 78
+Camiseta | Quantidade em estoque: 4

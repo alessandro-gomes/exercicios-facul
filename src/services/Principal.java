@@ -1,32 +1,76 @@
 package services;
 
 import java.io.*;
-import java.util.Scanner;
 
 public class Principal {
 
 	public static void main(String[] args) {
-		String fileName = "src/produtos.txt";
-		Scanner ler = new Scanner(System.in);
+		Estoque estoque = new Estoque("src/produtos.txt");
+		Produto[] produtos = estoque.getProdutos();
+		String gravaArquivo = "";
 
-		// String fileName = "src/";
-		// System.out.print("Qual o nome do arquivo? ");
-		// fileName += ler.next();
-		// fileName += ".txt";
+		gravaArquivo += "Informações do alimento mais caro:\n";
+		int posicaoAlimentoMaisCaro = -1;
 
-		Estoque estoque = new Estoque(fileName);
+		// encontra a posicao do primeiro produto do tipo Alimento
+		for (int i = 0; i < produtos.length; i++)
+			if (produtos[i] instanceof Alimento) {
+				posicaoAlimentoMaisCaro = i;
+				break;
+			}
+
+		// procura o alimento mais caro
+		if (posicaoAlimentoMaisCaro == -1)
+			gravaArquivo += "[Não existem alimentos no estoque]\n";
+		else {
+			for (int i = posicaoAlimentoMaisCaro + 1; i < produtos.length; i++)
+				if (produtos[i] instanceof Alimento)
+					if (produtos[i].getPreco() > produtos[posicaoAlimentoMaisCaro].getPreco())
+						posicaoAlimentoMaisCaro = i;
+			gravaArquivo += produtos[posicaoAlimentoMaisCaro].getNome() + " | R$ " + produtos[posicaoAlimentoMaisCaro].getPreco() + "\n";
+		}
+
+		gravaArquivo += "\nInformações do eletrodoméstico mais barato:\n";
+		int posicaoEletrodomesticoMaisBarato = -1;
+
+		// encontra a posicao do primeiro produto do tipo Eletrodomestico
+		for (int i = 0; i < produtos.length; i++)
+			if (produtos[i] instanceof Eletrodomestico) {
+				posicaoEletrodomesticoMaisBarato = i;
+				break;
+			}
+
+		// procura o eletrodomestico mais barato
+		if (posicaoEletrodomesticoMaisBarato == -1)
+			gravaArquivo += "[Não existem eletrodomésticos no estoque]\n";
+		else {
+			for (int i = posicaoEletrodomesticoMaisBarato + 1; i < produtos.length; i++)
+				if (produtos[i] instanceof Eletrodomestico)
+					if (produtos[i].getPreco() < produtos[posicaoEletrodomesticoMaisBarato].getPreco())
+						posicaoEletrodomesticoMaisBarato = i;
+			gravaArquivo += produtos[posicaoEletrodomesticoMaisBarato].getNome() + " | R$ " + produtos[posicaoEletrodomesticoMaisBarato].getPreco() + "\n";
+		}
+
+		// o nome e a quantidade em estoque de todos os produtos de vestuário
+		gravaArquivo += "\nNome e quantidade em estoque de todos os produtos de vestuário:\n";
+		for (int i = 0; i < produtos.length; i++)
+			if (produtos[i] instanceof Vestuario)
+				gravaArquivo += produtos[i].getNome() + " | Quantidade em estoque: "
+						+ ((Vestuario) produtos[i]).getEstoque() + "\n";
+
+		FileWriter fw = null;
+		PrintWriter pw = null;
 
 		try {
-			File file = new File("src/info.txt");
-			FileWriter fr = new FileWriter(file);
-			PrintWriter out = new PrintWriter(fr);
-			out.println("Alimento mais caro: " + estoque.getAlimentoMaisCaro());
-			out.println("Eletrodomestico mais barato: " + estoque.getEletrodomesticoMaisBarato());
-			//out.println("Nome e estoque dos produtos de vestuario: " + estoque.getEstoqueTotalVestuario());
-			out.close();
-		} catch (IOException e) {
-			System.out.println("Erro ao escrever arquivo.");
+			fw = new FileWriter("src/info.txt");
+			pw = new PrintWriter(fw);
+			pw.write(gravaArquivo);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} finally {
+			pw.close();
 		}
+
 	}
 
 }

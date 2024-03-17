@@ -1,16 +1,19 @@
 package services;
 
-import java.util.Date;
-
 public class Alimento extends Produto{
 
-	private Date dataValidade;
+	private String dataValidade;
 
-	public Date getDataValidade() {
+	public Alimento(String nome, String descricao, Double preco, String dataValidade) {
+		super(nome, descricao, preco);
+		this.dataValidade = dataValidade;
+	}
+
+	public String getDataValidade() {
 		return dataValidade;
 	}
 
-	public void setDataValidade(Date dataValidade) {
+	public void setDataValidade(String dataValidade) {
 		this.dataValidade = dataValidade;
 	}
 }
