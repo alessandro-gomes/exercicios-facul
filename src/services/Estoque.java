@@ -4,6 +4,8 @@ import java.io.*;
 
 public class Estoque {
 
+	private String[] produto;
+	private Produto[] produtos;
 	private String alimentoMaisCaro;
 	private String eletrodomesticoMaisBarato;
 	private Double maiorValorAlimento = -1D;
@@ -15,8 +17,8 @@ public class Estoque {
 
 	public void preencheEstoque(String fileName) {
 		try {
-			String[] produto;
 			Double valorAtual;
+			int count = 0;
 			FileReader fr = new FileReader(fileName);
 			BufferedReader in = new BufferedReader(fr);
 			String line = in.readLine();
@@ -25,19 +27,18 @@ public class Estoque {
 			while (line != null) {
 				produto = line.split("\\s\\*\\s");
 				
-				if (produto[3].equals("Alimento")) {
+				if (produto[3].equalsIgnoreCase("Alimento")) {
 					valorAtual = Double.parseDouble(produto[2]);
 					calculoAlimentoMaisCaro(line, valorAtual);
-				} else if (produto[3].equals("Eletrodomestico")) {
+				} else if (produto[3].equalsIgnoreCase("Eletrodomestico")) {
 					valorAtual = Double.parseDouble(produto[2]);
 					calculoEletrodomesticoMaisBarato(line, valorAtual);
+				} else if (produto[3].equalsIgnoreCase("Vestuario")) {
+					
 				}
 				
 				line = in.readLine();
 			}
-			
-			System.out.println(maiorValorAlimento);
-			System.out.println(menorValorEletrodomestico);
 			in.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo não encontrado.");
@@ -84,20 +85,20 @@ public class Estoque {
 		this.eletrodomesticoMaisBarato = eletrodomesticoMaisBarato;
 	}
 
-	public Double getValorFinal() {
-		return maiorValorAlimento;
-	}
-
-	public void setValorFinal(Double valorFinal) {
-		this.maiorValorAlimento = valorFinal;
-	}
-
 	public Double getMenorValorEletrodomestico() {
 		return menorValorEletrodomestico;
 	}
 
 	public void setMenorValorEletrodomestico(Double menorValorEletrodomestico) {
 		this.menorValorEletrodomestico = menorValorEletrodomestico;
+	}
+
+	public Produto[] getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Produto[] produtos) {
+		this.produtos = produtos;
 	}
 	
 	

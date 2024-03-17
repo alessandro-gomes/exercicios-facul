@@ -22,6 +22,7 @@ public class Principal {
 			PrintWriter out = new PrintWriter(fr);
 			out.println("Alimento mais caro: " + estoque.getAlimentoMaisCaro());
 			out.println("Eletrodomestico mais barato: " + estoque.getEletrodomesticoMaisBarato());
+			//out.println("Nome e estoque dos produtos de vestuario: " + estoque.getEstoqueTotalVestuario());
 			out.close();
 		} catch (IOException e) {
 			System.out.println("Erro ao escrever arquivo.");
